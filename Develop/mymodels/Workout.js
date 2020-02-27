@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const ActivitySchema = require("./Activity");
 
 const Schema = mongoose.Schema;
 
@@ -8,9 +9,15 @@ const WorkoutSchema = new Schema({
   activities: [
     {
       type: Schema.Types.ObjectId,
-      name: "Activity"
+      ref: "Activity"
     }
   ]
+  // exercises: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "Exercise"
+  //   }
+  // ]
 });
 
 const Workout = mongoose.model("Workout", WorkoutSchema);

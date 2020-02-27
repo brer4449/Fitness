@@ -9,13 +9,7 @@ const ActivitySchema = new Schema({
   weight: Number,
   distance: Number,
   reps: Number,
-  sets: Number,
-  exercises: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Exercise"
-    }
-  ]
+  sets: Number
 });
 
 const Activity = mongoose.model("Activity", ActivitySchema);
