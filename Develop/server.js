@@ -22,20 +22,9 @@ mongoose.connect(
 // Use express router to register routes as middleware
 app.use("/api/activity", require("./routes/activity"));
 app.use("/api/exercise", require("./routes/exercise"));
+app.use("/api/workout", require("./routes/workout"));
 
 // STUDENTS: REGISTER ROUTES TO HANDLE WORKOUT AND EXERCISE API CALLS
-
-// Retrieve a JSON payload of all workouts done so far
-//needs modification
-app.get("/api/workout", (req, res) => {
-  db.Workout.find({})
-    .then(dbWorkout => {
-      res.json(dbWorkout);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
 
 // Save the currently selected workout
 //needs modification
