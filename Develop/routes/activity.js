@@ -6,5 +6,6 @@ const ActivityController = require("../controllers/activityController");
 // GET  "/api/activity"
 // Calls controller which will return all activities for a specific workout
 router.get("/", ActivityController.getAll);
+router.post("/:workoutId", ActivityController.postOne);
 
 module.exports = router;

@@ -6,14 +6,21 @@ const WorkoutController = {
   // This is called (when needed) from the route page when a
   // listing of all exercises is needed
 
-  getAll(req, res) {
-    Workout.find({}).then(data => {
+  // getAll(req, res) {
+  //   Workout.find({}).then(data => {
+  //     res.json(data);
+  //   });
+  // },
+  getFinished(req, res) {
+    //needs modification! (if workout is DONE or not)
+    Workout.findById({}).then(data => {
       res.json(data);
     });
   },
-  postOne(req, res) {
+  //saves currently selected workout
+  saveSelected(req, res) {
     Workout.create(req.body)
-      //needs modification! (if workout is DONE or not)
+      //more code here, how to select id? Who knows?!?
       .then(dbWorkout => {
         res.json(dbWorkout);
       })

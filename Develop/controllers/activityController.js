@@ -9,6 +9,17 @@ const ActivityController = {
     Activity.find({}).then(data => {
       res.json(data);
     });
+  },
+  //gets specific activity and adds it to workout (via id)
+  postOne(req, res) {
+    Activity.create(req.body)
+      //needs modification! (if activity is DONE or not)
+      .then(dbActivity => {
+        res.json(dbActivity);
+      })
+      .catch(err => {
+        res.json(err);
+      });
   }
 };
 
