@@ -14,56 +14,73 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/mongofitness",
-  dbconfig.settings
-);
-
 // Use express router to register routes as middleware
 app.use("/api/activity", require("./routes/activity"));
 app.use("/api/exercise", require("./routes/exercise"));
 app.use("/api/workout", require("./routes/workout"));
 
-// STUDENTS: REGISTER ROUTES TO HANDLE WORKOUT AND EXERCISE API CALLS
-
-// Save the currently selected workout
-//needs modification
-app.post("/api/workout", ({ body }, res) => {
-  db.Workout.create(body)
-    .then(({ _id }) =>
-      db.Workout.findOneAndUpdate(
-        {},
-        { $push: { workout: _id } },
-        { new: true }
-      )
-    )
-    .then(dbWorkout => {
-      res.json(dbWorkout);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+//clears database in development environment
+db.Workout.remove({}, (err, res) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(res);
+  }
+});
+db.Exercise.remove({}, (err, res) => {
+  if (err) {
+    console.log(err);
+  } else console.log(res);
+});
+db.Activity.remove({}, (err, res) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(res);
+  }
 });
 
-// Add an activity to the current workout being viewed.
-// Save the currently selected workout
-//needs LOTS of work
-app.post("/api/activity?workoutId=:workoutId", ({ body }, res) => {
-  db.Workout.create(body)
-    .then(({ _id }) =>
-      db.Workout.findOneAndUpdate(
-        {},
-        { $push: { workout: _id } },
-        { new: true }
-      )
-    )
-    .then(dbWorkout => {
-      res.json(dbWorkout);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+const exerciseSEED = [
+  { name: "Bench Press" },
+  { name: "DB Bench" },
+  { name: "Pec Dec" },
+  { name: "Incline Bench" },
+  { name: "Military Press" },
+  { name: "Arnold Press" },
+  { name: "Lateral Flys" },
+  { name: "Rear-delt Flys" },
+  { name: "Yates Row" },
+  { name: "DB Row" },
+  { name: "Weighed Pull-ups" },
+  { name: "Shrugs" },
+  { name: "Lat Pull" },
+  { name: "Low-Bar Squat" },
+  { name: "Lunges" },
+  { name: "Quad Extensions" },
+  { name: "Calve Raises" },
+  { name: "Deadlift" },
+  { name: "Back Extension" },
+  { name: "Hamstring Curls" },
+  { name: "Band Extensions" },
+  { name: "Bicep Curl" },
+  { name: "Hammer Curl" },
+  { name: "Barbel Curl" },
+  { name: "Tricep Extensions" },
+  { name: "Weighted Dips" },
+  { name: "Skull Crushers" }
+];
+db.Exercise.insertMany(exerciseSEED, function(err, res) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(res);
+  }
 });
+
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/mongofitness",
+  dbconfig.settings
+);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
