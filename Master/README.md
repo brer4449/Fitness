@@ -8,7 +8,7 @@
 
 ## General Info
 
-This application is meant to track one's daily workout routine. One can simply add their workout and modify what their workout looks like. They cana also look back at previous workouts to see what activities were performed and for how long. This app is intended to organize one's workout regimen.
+This application is meant to track one's daily workout routine. One can simply add their workout and modify what their workout looks like. They can also look back at previous workouts to see what activities were performed and for how long. This app is intended to organize one's workout regimen.
 
 ## Instructions
 
