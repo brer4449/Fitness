@@ -136,6 +136,7 @@ form::after {
 .exercise .ui.card {
   width: 400px;
   max-width: 600px;
+  margin-bottom: 30px;
 }
 
 .exercise .buttons {
